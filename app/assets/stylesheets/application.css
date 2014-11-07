@@ -3,6 +3,6 @@
 *= require_tree .
 */
 
-p.filter-table {
+.clear {
     clear: both;
 }

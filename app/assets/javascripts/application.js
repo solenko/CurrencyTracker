@@ -6,3 +6,9 @@
 $(function(){
   $('table.filterable').filterTable();
 });
+
+$(function() {
+    $('.select-all-control').on('click', function() {
+     $('input[type="checkbox"]', $(this.form)).prop('checked', $(this).prop('checked'))
+    });
+});

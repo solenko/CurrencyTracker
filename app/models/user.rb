@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
       hashes << {:country => country}
       country[:visited] = 1
     end
-    visits.create!(hashes)
+    transaction do
+      visits.create!(hashes)
+    end
 
   end
 
@@ -29,6 +31,15 @@ class User < ActiveRecord::Base
 
   def not_visited_countries
     Country.not_visited_by(self)
+  end
+
+  def collected_currencies
+    Currency.collected_by(self)
+  end
+
+  def not_collected_currencies
+    Currency.not_collected_by(self)
+
   end
 
 end

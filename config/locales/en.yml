@@ -6,4 +6,5 @@ en:
     user_visits:
       visited: County %{country_name} marked as visited.
       not_visited: County %{country_name} marked as not visited.
-      bulk_visit: "%{count} countries marked as visited"
+      bulk_countries_visit: "%{count} countries marked as visited."
+      bulk_currencies_visit: "%{count} currencies collected."

@@ -1,0 +1,7 @@
+<%- countries.each do |country| -%>
+  <%- country.currencies.each do |currency| -%>
+    jQuery("#<%= dom_id(currency) %>").replaceWith('<%=j render 'currencies/currency', :currency => currency %>');
+  <%- end -%>
+<%- end -%>
+jQuery('#collected_currencies_chart').html('<%=j render 'currencies/collected_currencies_chart', :collected_count => current_user.collected_currencies.count, :not_collected_count => current_user.not_collected_currencies.count %>');
+SimplePieChart.initialize(document.getElementById('collected_currencies_chart'));

@@ -14,11 +14,12 @@ class UserVisitsController < ApplicationController
   end
 
   def bulk_create
+    @list = params[:list] == 'currencies' ? 'currencies' : 'countries'
     @countries = Country.not_visited_by(current_user).where(:code => params[:country_ids])
     current_user.bulk_mark_visited!(@countries)
     respond_with(@countries,
-                 :notice => I18n.t('controllers.user_visits.bulk_visit', :count => @countries.count),
-                 :location => countries_path
+                 :notice => I18n.t("controllers.user_visits.bulk_#{@list}_visit", :count => @countries.count),
+                 :location => send("#{@list}_path")
     )
   end
 

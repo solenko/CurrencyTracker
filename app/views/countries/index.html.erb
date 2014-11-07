@@ -4,12 +4,14 @@
   </div>
 
   <h1>Countries</h1>
-
+  <br class="clear" />
   <%= form_tag bulk_create_visits_path, :method => :post, :data => {:remote => true}, :class => 'bulk-form' do %>
-      <table class="filterable" data-filter-inputSelector="#js_table_filter">
+      <input type="hidden" name="list" value="countries" />
+      <%= submit_tag "Visit selected", :disable_with => 'Updating...' %>
+      <table class="filterable">
         <thead>
             <tr>
-              <th><%= submit_tag "Visit", :disable_with => 'Updating...' %></th>
+              <th><label><input type="checkbox" class="select-all-control">Select all</label></th>
               <th>Name</th>
               <th>Code</th>
               <th>Status</th>

@@ -1,33 +1,30 @@
 <section>
   <div id="collected_currencies_chart" class="simple_pie_chart" width='300px' height='100px'>
-    <table>
-      <tr>
-        <th>Collected</th>
-        <td><%= Currency.collected_by(current_user).count %></td>
-      </tr><tr>
-        <th>Not Collected</th>
-        <td><%= Currency.not_collected_by(current_user).count %></td>
-      </tr>
-    </table>
+    <%= render 'collected_currencies_chart', :collected_count => current_user.collected_currencies.count, :not_collected_count => current_user.not_collected_currencies.count %>
   </div>
 
   <h1>Currencies</h1>
+  <br class="clear" />
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
+  <%= form_tag bulk_create_visits_path, :method => :post, :data => {:remote => true}, :class => 'bulk-form' do %>
+      <input type="hidden" name="list" value="currencies" />
+      <%= submit_tag "Collect selected", :disable_with => 'Updating...' %>
 
-  <% @currencies.each do |currency| %>
-    <tr>
-      <td><%= currency.name %></td>
-      <td><%= currency.code %></td>
-      <td><%= currency.collected_by?(current_user) ? 'Collected' : 'Not Collected' %></td>
-      <td><%= link_to 'Show', currency %></td>
-    </tr>
+      <table class="filterable">
+        <thead>
+            <tr>
+              <th><label><input type="checkbox" class="select-all-control">Select all</label></th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <%= render @currencies %>
+        </tbody>
+
+      </table>
   <% end %>
-  </table>
 </section>

@@ -1,0 +1,5 @@
+<%- countries.each do |country| -%>
+    jQuery("#<%= dom_id(country) %>").replaceWith('<%=j render '/countries/country', :country => country %>');
+<%- end -%>
+jQuery('#visited_countries_chart').html('<%=j render 'countries/visited_countries_chart', :visited_count => current_user.visited_countries.count, :not_visited_count => current_user.not_visited_countries.count %>');
+SimplePieChart.initialize(document.getElementById('visited_countries_chart'));
