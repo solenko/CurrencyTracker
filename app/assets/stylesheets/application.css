@@ -2,3 +2,7 @@
 *= require_self
 *= require_tree .
 */
+
+p.filter-table {
+    clear: both;
+}

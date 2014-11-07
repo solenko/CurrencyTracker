@@ -13,4 +13,22 @@ class User < ActiveRecord::Base
     visits.where(:country_code => country.code).destroy_all
   end
 
+  def bulk_mark_visited!(countries)
+    hashes = []
+    countries.each do |country|
+      hashes << {:country => country}
+      country[:visited] = 1
+    end
+    visits.create!(hashes)
+
+  end
+
+  def visited_countries
+    Country.visited_by(self)
+  end
+
+  def not_visited_countries
+    Country.not_visited_by(self)
+  end
+
 end

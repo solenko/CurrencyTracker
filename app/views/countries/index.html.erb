@@ -1,35 +1,25 @@
 <section>
   <div id="visited_countries_chart" class="simple_pie_chart" width='300px' height='100px'>
-    <table>
-      <tr>
-        <th>Visited</th>
-        <td><%= Country.visited_by(current_user).count %></td>
-      </tr><tr>
-        <th>Not Visited</th>
-        <td><%= Country.not_visited_by(current_user).count %></td>
-      </tr>
-    </table>
+    <%= render 'visited_countries_chart', :visited_count => current_user.visited_countries.count, :not_visited_count => current_user.not_visited_countries.count %>
   </div>
 
   <h1>Countries</h1>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @countries.each do |country| %>
-    <tr>
-      <td><%= country.name %></td>
-      <td><%= country.code %></td>
-      <td><%= country.visited_by?(current_user) ? 'Visited' : 'Not Visited' %></td>
-      <td><%= link_to 'Show', country %></td>
-      <td><%= link_to 'Edit', edit_country_path(country) %></td>
-    </tr>
+  <%= form_tag bulk_create_visits_path, :method => :post, :data => {:remote => true}, :class => 'bulk-form' do %>
+      <table class="filterable" data-filter-inputSelector="#js_table_filter">
+        <thead>
+            <tr>
+              <th><%= submit_tag "Visit", :disable_with => 'Updating...' %></th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Status</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= render @countries %>
+        </tbody>
+      </table>
   <% end %>
-  </table>
 </section>

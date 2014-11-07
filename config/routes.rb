@@ -7,6 +7,12 @@ CurrencyTracker::Application.routes.draw do
     resource :visits, :controller => :user_visits, :only => [:create, :destroy]
   end
 
+  resources :visits, :controller => :user_visits, :only => [] do
+    collection do
+      post "bulk_create"
+    end
+  end
+
   resources :currencies, :only => [:index, :show]
 
 
