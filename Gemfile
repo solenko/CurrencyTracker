@@ -7,6 +7,8 @@ gem 'sqlite3'
 gem 'savon', '~>1.0'
 gem 'nokogiri'
 
+gem 'devise'
+
 group :development do
   gem 'capybara'
   gem 'database_cleaner'
@@ -14,6 +16,8 @@ end
 
 group :test do
   gem 'cucumber-rails', :require => false
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
 end
 
 group :assets do

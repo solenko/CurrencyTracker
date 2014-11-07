@@ -6,17 +6,22 @@ class Currency < ActiveRecord::Base
   validates_presence_of :code
   validates_uniqueness_of :code, :allow_blank => true
 
+
   belongs_to :country
 
-  def self.collected
-    all.select {|currency| currency.collected? }
+  def self.with_collection_data_for(user)
+    joins(:country).merge(Country.with_visits_data_for(user)).except(:select).select("currencies.*, user_visits.id IS NOT NULL as collected")
   end
 
-  def self.not_collected
-    all.reject {|currency| currency.collected? }
+  def self.collected_by(user)
+    with_collection_data_for(user).where("user_visits.id IS NOT NULL")
   end
 
-  def collected?
-    country.nil? ? false : country.visited?
+  def self.not_collected_by(user)
+    with_collection_data_for(user).where("user_visits.id IS NULL")
+  end
+
+  def collected_by?(user)
+    !self.class.with_collection_data_for(user).find(code).collected.zero?
   end
 end

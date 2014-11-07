@@ -7,7 +7,7 @@ class ActiveSupport::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
+  # fixtures :all
 
   def self.should_not_respond_to_actions(actions = {})
     actions.each do |name, method|
