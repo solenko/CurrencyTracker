@@ -8,3 +8,8 @@ en:
       not_visited: County %{country_name} marked as not visited.
       bulk_countries_visit: "%{count} countries marked as visited."
       bulk_currencies_visit: "%{count} currencies collected."
+  reports:
+    visits:
+      title: 'Visits over time'
+    collection:
+      title: 'Collection over time'

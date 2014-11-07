@@ -3,7 +3,7 @@ class CurrenciesController < ApplicationController
   # GET /currencies.xml
   def index
     @currencies = Currency.with_collection_data_for(current_user)
-
+    @collection_report = Report::Collection.new(current_user)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @currencies }

@@ -3,7 +3,7 @@ class CountriesController < ApplicationController
   # GET /countries.xml
   def index
     @countries = Country.with_visits_data_for(current_user)
-
+    @visits_report = Report::Visits.new(current_user)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @countries }

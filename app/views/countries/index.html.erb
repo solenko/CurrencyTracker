@@ -1,4 +1,7 @@
 <section>
+  <div id="visited_countries_report" class="simple_line_chart" width='300px' height='100px'>
+    <%= render 'shared/line_chart', :report => @visits_report, :title => t('reports.visits.title') %>
+  </div>
   <div id="visited_countries_chart" class="simple_pie_chart" width='300px' height='100px'>
     <%= render 'visited_countries_chart', :visited_count => current_user.visited_countries.count, :not_visited_count => current_user.not_visited_countries.count %>
   </div>

@@ -1,4 +1,8 @@
 <section>
+  <div id="collected_currencies_report" class="simple_line_chart" width='300px' height='100px'>
+    <%= render 'shared/line_chart', :report => @collection_report, :title => t('reports.collection.title') %>
+  </div>
+
   <div id="collected_currencies_chart" class="simple_pie_chart" width='300px' height='100px'>
     <%= render 'collected_currencies_chart', :collected_count => current_user.collected_currencies.count, :not_collected_count => current_user.not_collected_currencies.count %>
   </div>

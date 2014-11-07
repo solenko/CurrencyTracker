@@ -5,3 +5,6 @@
 <%- end -%>
 jQuery('#collected_currencies_chart').html('<%=j render 'currencies/collected_currencies_chart', :collected_count => current_user.collected_currencies.count, :not_collected_count => current_user.not_collected_currencies.count %>');
 SimplePieChart.initialize(document.getElementById('collected_currencies_chart'));
+
+jQuery('#collected_currencies_report').html('<%=j render 'shared/line_chart', :report => Report::Collection.new(current_user), :title => t('reports.collection.title') %>');
+SimpleLineChart.initialize(document.getElementById('collected_currencies_report'));

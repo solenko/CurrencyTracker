@@ -158,7 +158,9 @@ section h1 {
 
 /* Charts */
 #collected_currencies_chart,
-#visited_countries_chart {
+#visited_countries_chart,
+#visited_countries_report,
+#collected_currencies_report {
   float: right;
 }
 

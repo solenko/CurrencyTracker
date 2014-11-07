@@ -1,0 +1,9 @@
+<table>
+  <caption></caption>
+  <%- report.data.each do |row| -%>
+      <tr>
+        <th><%= row['range_start'].to_s(:short) %></th>
+        <td><%= row['visits_count'] %></td>
+      </tr>
+  <%- end -%>
+</table>
