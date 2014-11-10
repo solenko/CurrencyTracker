@@ -1,5 +1,5 @@
 class UserVisitsController < ApplicationController
-  before_filter :require_county!, :only => [:create, :destroy]
+  before_filter :require_country!, :only => [:create, :destroy]
 
   respond_to :html, :js
 
@@ -25,7 +25,7 @@ class UserVisitsController < ApplicationController
 
   private
 
-  def require_county!
+  def require_country!
     @country = Country.find params[:country_id]
   end
 end

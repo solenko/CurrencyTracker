@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.filtertable.js
 //= require_self
 //= require_tree .
 

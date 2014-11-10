@@ -16,7 +16,6 @@ class Country < ActiveRecord::Base
   accepts_nested_attributes_for :currencies, :allow_destroy => true
 
   scope :with_visits_data_for, ->(user) {
-    return where("1 = 0") unless user
     joins(sprintf("LEFT JOIN user_visits ON user_visits.country_code = countries.code AND user_visits.user_id = %d", user.id)).
     select("countries.*, user_visits.id IS NOT NULL as visited")
   }
